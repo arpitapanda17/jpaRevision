@@ -1,12 +1,19 @@
 package com.arpita.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -29,6 +36,17 @@ public class Course {
 	private CourseMaterial courseMaterial;
 	@Transient
 	private String url;
+	
+	@ManyToMany
+	@JoinTable(
+			name="student_course_map",
+			joinColumns=@JoinColumn(
+					name="course_id",
+					referencedColumnName="courseId"),
+			inverseJoinColumns=@JoinColumn(
+					name="student_id",
+					referencedColumnName="studentId"))
+	private List<Student> students;
 	
 	public Course() {
 		super();
@@ -70,5 +88,16 @@ public class Course {
 	}
 	public void setCourseMaterial(CourseMaterial courseMaterial) {
 		this.courseMaterial = courseMaterial;
+	}
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	
+	public void addStudents(Student student) {
+		if(students==null) students=new ArrayList<>();
+		students.add(student);
 	}
 }
