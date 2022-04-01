@@ -1,6 +1,5 @@
 package com.arpita.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -89,7 +88,7 @@ public class Course {
 	public void setCourseMaterial(CourseMaterial courseMaterial) {
 		this.courseMaterial = courseMaterial;
 	}
-	public List<Student> getStudents() {
+/*	public List<Student> getStudents() {
 		return students;
 	}
 	public void setStudents(List<Student> students) {
@@ -99,5 +98,5 @@ public class Course {
 	public void addStudents(Student student) {
 		if(students==null) students=new ArrayList<>();
 		students.add(student);
-	}
+	}*/
 }

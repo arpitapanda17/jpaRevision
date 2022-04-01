@@ -11,10 +11,11 @@ import com.arpita.repository.StudentRepository;
 
 //@SpringBootTest - ideally should not be used for testing 
 //JPA layer, using here as we are storing the records
-//@DataJpaTest -for testing JPA later
+//@DataJpaTest -for testing JPA 
 //@SpringBootTest
+
 @Service
-public class StudentRepositoryTest{
+public class StudentService{
 	@Autowired
 	private StudentRepository studentRepository;
 	
@@ -22,14 +23,17 @@ public class StudentRepositoryTest{
 	public Student saveStudent(Student student) {
 		return studentRepository.save(student);
 	}
-
+	//store more than one student at a time
+	public List<Student> saveAllStudents(List<Student> students) {
+		return studentRepository.saveAll(students);
+	}
 	//get all student details
 	public List<Student> getAllStudents(){
 		return studentRepository.findAll();
 	}
 	
 	//get student by Id
-	public Optional<Student> getStudentById(int id) {
+	public Optional<Student> getStudentById(Long id) {
 		return studentRepository.findById(id);
 	}
 
@@ -68,5 +72,11 @@ public class StudentRepositoryTest{
 		return studentRepository.getStudentFirstNameByEmailAddress(emailId);
 	}
 
+	//delete student by id
+	public void deleteStudentById(Long id) {
+		studentRepository.deleteById(id);
+	}
+	
+	
 	
 }

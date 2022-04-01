@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="tbl_student",
@@ -27,16 +28,17 @@ public class Student {
 			generator="student_sequence"
 	)
 	private Long studentId;
+	
+	@Size(min=2)
 	private String firstName;
 	private String lastName;
 	@Column(name="email_address", nullable=false)
-	private String emailId;//should be unique, so unique constraint can be added
+	private String emailId;//should be unique, so unique constraint is added
 	@Embedded
 	private Guardian guardian;
 	
 	public Student() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Student(String firstName, String lastName, String emailId, String guardianName, String guardianEmail,

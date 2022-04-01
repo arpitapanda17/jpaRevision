@@ -14,7 +14,7 @@ import com.arpita.service.TeacherService;
 
 @RestController
 public class TeacherController {
-	
+	/*
 	@Autowired
 	TeacherService teacherService;
 
@@ -27,5 +27,5 @@ public class TeacherController {
 						.buildAndExpand(savedTeacher)
 						.toUri();
 		return ResponseEntity.created(location).build();
-	}
+	}*/
 }
